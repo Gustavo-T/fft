@@ -40,10 +40,10 @@ static __global__ void multiply(cufftComplex* a, cufftComplex* b, int size)
 
 bool memcpCheck(cufftComplex* a, cufftComplex* d_a, size_t size ) 
 {
-checkCudaErrors(cudaMemcpy(d_a, a,sizeof(cufftComplex) * size, cudaMemcpyHostToDevice));
-cufftComplex* tData = new cufftComplex[size];
-checkCudaErrors(cudaMemcpy(tData, d_a,sizeof(cufftComplex) * size, cudaMemcpyDeviceToHost));
-return  (memcmp(a,tData,sizeof(cufftComplex) * size) == 0) ? true : false;
+	checkCudaErrors(cudaMemcpy(d_a, a,sizeof(cufftComplex) * size, cudaMemcpyHostToDevice));
+	cufftComplex* tData = new cufftComplex[size];
+	checkCudaErrors(cudaMemcpy(tData, d_a,sizeof(cufftComplex) * size, cudaMemcpyDeviceToHost));
+	return  (memcmp(a,tData,sizeof(cufftComplex) * size) == 0) ? true : false;
 
 }
 
